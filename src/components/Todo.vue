@@ -14,8 +14,8 @@ const state = reactive({
   todos: [] as Todo[],
 });
 
-const baseURL = import.meta.env.API_URL ?? "http://localhost:3001";
-const apiKey = import.meta.env.API_KEY ?? "";
+const baseURL = import.meta.env.PUBLIC_API_URL ?? "http://localhost:3001";
+const apiKey = import.meta.env.PUBLIC_API_KEY ?? "";
 
 axios.defaults.headers.common["x-api-key"] = apiKey;
 
