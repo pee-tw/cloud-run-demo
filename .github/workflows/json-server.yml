@@ -4,14 +4,15 @@ on:
   push:
     branches:
       - main
-    # paths:
-    #   - api/**
+    paths:
+      - api/**
 
 jobs:
   deploy-json-server:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/backend:latest
+      FRONTEND_URL: "https://frontend-r6ot4p5wjq-as.a.run.app"
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@v2        
@@ -33,4 +34,5 @@ jobs:
       - name: Deploy Docker image
         run: |
           gcloud run deploy backend --image $IMAGE_NAME --region asia-southeast1 --platform managed \
-              --set-env-vars=API_SECRET=${{ secrets.API_SECRET }} --allow-unauthenticated
+              --set-env-vars=API_SECRET=${{ secrets.API_SECRET }},FRONTEND_URL=$FRONTEND_URL \
+              --allow-unauthenticated
