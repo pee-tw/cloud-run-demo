@@ -1,0 +1,12 @@
+FROM node:alpine
+
+WORKDIR /app
+
+COPY api/local-db-example.json api/db.json
+COPY api/api-key-middleware.js api/api-key-middleware.js
+
+RUN npm i -g json-server
+
+EXPOSE 8080
+ 
+CMD npx json-server -H 0.0.0.0 --watch ./api/db.json --middlewares ./api/api-key-middleware.js --port 8080

@@ -1,0 +1,27 @@
+{
+  "name": "@example/basics",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "start:api": "npx json-server --watch ./api/local-db.json --port 3001"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^2.1.0",
+    "@astrojs/vue": "^1.1.0",
+    "astro": "^1.5.0",
+    "axios": "^1.1.3",
+    "tailwindcss": "^3.1.8",
+    "uuid": "^9.0.0",
+    "vue": "^3.2.41"
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.3.4",
+    "json-server": "^0.17.0"
+  }
+}

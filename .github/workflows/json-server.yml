@@ -1,0 +1,36 @@
+name: deploy json-server
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - api/**
+
+jobs:
+  deploy-json-server:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/backend:latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2        
+      - name: Setup node env 🏗
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "npm"
+      - name: GCP Auth
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+      - name: Configure Docker
+        run: gcloud auth configure-docker --quiet
+      - name: Build Docker image
+        run: docker build -f Dockerfiles/Dockerfile.backend . -t $IMAGE_NAME
+      - name: Push Docker image
+        run: docker push $IMAGE_NAME
+      - name: Deploy Docker image
+        run: |
+          gcloud run deploy backend --image $IMAGE_NAME --region asia-southeast1 --platform managed \
+              --set-env-vars=API_SECRET=${{ secrets.API_SECRET }} --allow-unauthenticated

@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Todo from "../components/Todo.vue";
+---
+
+<Layout title="Yet another TODO demo">
+  <main>
+    <Todo client:idle />
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 60ch;
+  }
+</style>

@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "id": "9693c4ef-ad30-4f0c-b303-aea5309a655d",
+      "display": "Make coffee",
+      "completed": false
+    },
+    {
+      "id": "aeb8d37c-773c-419e-b026-3f63ed615c53",
+      "display": "Drink coffee",
+      "completed": false
+    },
+    {
+      "id": "54cbe48b-410e-4f28-a32e-88d072549b55",
+      "display": "Start coding",
+      "completed": false
+    }
+  ]
+}
