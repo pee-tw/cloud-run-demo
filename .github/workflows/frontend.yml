@@ -18,19 +18,19 @@ jobs:
       - name: Setup node env 🏗
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
-          cache: 'npm'
+          node-version: "16"
+          cache: "npm"
       - name: Install dependencies 👨🏻‍💻
         run: npm ci
       - name: Build
         run: npm run build
         env:
-          PUBLIC_API_URL: 'https://backend-r6ot4p5wjq-as.a.run.app'
+          PUBLIC_API_URL: "https://backend-r6ot4p5wjq-as.a.run.app"
           PUBLIC_API_KEY: ${{ secrets.API_SECRET }}
       - name: GCP Auth
-        uses: 'google-github-actions/auth@v0'
+        uses: "google-github-actions/auth@v0"
         with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+          credentials_json: "${{ secrets.GCP_CREDENTIALS }}"
       - name: Configure Docker
         run: gcloud auth configure-docker --quiet
       - name: Build Docker image
@@ -38,5 +38,6 @@ jobs:
       - name: Push Docker image
         run: docker push $IMAGE_NAME
       - name: Deploy Docker image
-        run: gcloud run deploy frontend --image $IMAGE_NAME --region asia-southeast1 --platform managed \
-              --memory 128Mi --allow-unauthenticated --port 80
+        run:
+          gcloud run deploy frontend --image $IMAGE_NAME --region asia-southeast1 --platform managed \
+          --memory 128Mi --allow-unauthenticated --port 80

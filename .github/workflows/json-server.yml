@@ -15,16 +15,16 @@ jobs:
       FRONTEND_URL: "https://frontend-r6ot4p5wjq-as.a.run.app"
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v2        
+        uses: actions/checkout@v2
       - name: Setup node env 🏗
         uses: actions/setup-node@v2
         with:
           node-version: "16"
           cache: "npm"
       - name: GCP Auth
-        uses: 'google-github-actions/auth@v0'
+        uses: "google-github-actions/auth@v0"
         with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+          credentials_json: "${{ secrets.GCP_CREDENTIALS }}"
       - name: Configure Docker
         run: gcloud auth configure-docker --quiet
       - name: Build Docker image
@@ -32,6 +32,7 @@ jobs:
       - name: Push Docker image
         run: docker push $IMAGE_NAME
       - name: Deploy Docker image
-        run: gcloud run deploy backend --image $IMAGE_NAME --region asia-southeast1 --platform managed \
-              --set-env-vars=API_SECRET=${{ secrets.API_SECRET }},FRONTEND_URL=$FRONTEND_URL \
-              --memory 128Mi --allow-unauthenticated
+        run:
+          gcloud run deploy backend --image $IMAGE_NAME --region asia-southeast1 --platform managed \
+          --set-env-vars=API_SECRET=${{ secrets.API_SECRET }},FRONTEND_URL=$FRONTEND_URL \
+          --memory 128Mi --allow-unauthenticated
