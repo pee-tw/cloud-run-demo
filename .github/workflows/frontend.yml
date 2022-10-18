@@ -39,4 +39,4 @@ jobs:
         run: docker push $IMAGE_NAME
       - name: Deploy Docker image
         run: gcloud run deploy frontend --image $IMAGE_NAME --region asia-southeast1 --platform managed \
-          --allow-unauthenticated --port 80 --memory 128M 
+              --port 80 --memory 128Mi --allow-unauthenticated
