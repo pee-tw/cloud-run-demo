@@ -32,7 +32,7 @@ jobs:
       - name: Push Docker image
         run: docker push $IMAGE_NAME
       - name: Deploy Docker image
-        run:
+        run: |
           gcloud run deploy backend --image $IMAGE_NAME --region asia-southeast1 --platform managed \
-          --set-env-vars=API_SECRET=${{ secrets.API_SECRET }},FRONTEND_URL=$FRONTEND_URL \
-          --memory 128Mi --allow-unauthenticated
+            --set-env-vars=API_SECRET=${{ secrets.API_SECRET }},FRONTEND_URL=$FRONTEND_URL \
+            --memory 128Mi --allow-unauthenticated
