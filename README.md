@@ -1,6 +1,8 @@
 # From code to deployment with minimal access control ASAP
 This repos contains a minimal setup that shows how to deploy frontend and backend with a shared secret access control inside a container. In the hopes that someone may benefit from this in the future :smiley:
 
+Disclaimer: This type of authentication is not suitable for production use!!!
+
 ## The architecture
 We have a frontend that's built and serve in Nginx container, the frontend has some logic that need some temporary perisitent. So, we use `json-server` on the backend to have basic CRUD. Then, we deploy these two containers on GCP's Cloud Run.
 
