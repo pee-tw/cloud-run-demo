@@ -14,6 +14,11 @@
       "id": "54cbe48b-410e-4f28-a32e-88d072549b55",
       "display": "Start coding",
       "completed": false
+    },
+    {
+      "id": "ea7ccf28-6909-41f3-b5ac-caeee7e3714d",
+      "display": "Do a demo",
+      "completed": false
     }
   ]
 }
